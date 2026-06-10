@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-06-10T12:02:00.036Z",
+  "previousFile": "active-2026-06-10T11-17-47.json",
+  "currentFile": "active-2026-06-10T12-01-59.json",
+  "previousTimestamp": "2026-06-10T11:17:47.345Z",
+  "currentTimestamp": "2026-06-10T12:01:59.734Z",
+  "previousActiveCount": 3650,
+  "currentActiveCount": 3650,
+  "summary": {
+    "newPoints": 0,
+    "removedPoints": 0,
+    "changedPoints": 0
+  },
+  "newPoints": [],
+  "removedPoints": [],
+  "changedPoints": []
+}
