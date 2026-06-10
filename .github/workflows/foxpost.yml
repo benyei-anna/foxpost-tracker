@@ -2,7 +2,7 @@ name: Foxpost snapshot2
 
 on:
   schedule:
-    - cron: "*/2 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
