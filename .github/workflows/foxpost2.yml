@@ -1,8 +1,6 @@
 name: Foxpost snapshot2
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
   push:
     branches:
