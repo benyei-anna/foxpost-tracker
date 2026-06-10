@@ -1,0 +1,43 @@
+name: Foxpost snapshot
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download JSON
+        run: curl https://cdn.foxpost.hu/foxplus.json -o data.json
+
+      - name: Run filter
+        run: node script/filter.js
+
+      - name: Save files
+        run: |
+          mkdir -p data/history
+          TS=$(date +%Y-%m-%dT%H-%M-%S)
+          mv data.json data/history/raw-$TS.json
+          mv active.json data/history/active-$TS.json
+
+      - name: Commit
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@github.com"
+          git add data/history/*.json
+          git commit -m "snapshot" || echo "nothing to commit"
+          git push
