@@ -27,17 +27,20 @@ jobs:
       - name: Run filter
         run: node script/filter.js
 
-      - name: Save files
+      - name: Save history files
         run: |
           mkdir -p data/history
           TS=$(date +%Y-%m-%dT%H-%M-%S)
-          mv data.json data/history/raw-$TS.json
-          mv active.json data/history/active-$TS.json
+          cp data.json data/history/raw-$TS.json
+          cp active.json data/history/active-$TS.json
+
+      - name: Run compare
+        run: node script/compare.js
 
       - name: Commit
         run: |
           git config user.name "bot"
           git config user.email "bot@github.com"
-          git add data/history/*.json
+          git add data/history/*.json data/diff/*.json
           git commit -m "snapshot" || echo "nothing to commit"
           git push
