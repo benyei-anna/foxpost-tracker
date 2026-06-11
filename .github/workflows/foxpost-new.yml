@@ -2,7 +2,7 @@ name: Foxpost snapshot NEW
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -21,5 +21,12 @@ jobs:
         with:
           node-version: 20
 
+      - name: Debug time
+        run: |
+          echo "=== DEBUG TIME ==="
+          date
+          echo "=================="
+
       - name: Test
         run: echo "Scheduler test"
+``
